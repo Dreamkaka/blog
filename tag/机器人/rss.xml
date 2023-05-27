@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>一个天天bb偶尔写写教程站点-博客版本 • Posts by &#34;机器人&#34; tag</title>
+        <link>http://example.com</link>
+        <description></description>
+        <language>zh-CN</language>
+        <pubDate>Sat, 27 May 2023 13:38:56 +0800</pubDate>
+        <lastBuildDate>Sat, 27 May 2023 13:38:56 +0800</lastBuildDate>
+        <category>一言</category>
+        <category>机器人</category>
+        <item>
+            <guid isPermalink="true">http://example.com/2023/05/27/bot-de/</guid>
+            <title>yunzai机器人搭建教程</title>
+            <link>http://example.com/2023/05/27/bot-de/</link>
+            <category>机器人</category>
+            <pubDate>Sat, 27 May 2023 13:38:56 +0800</pubDate>
+            <description><![CDATA[ &lt;h2 id=&#34;下载&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#下载&#34;&gt;#&lt;/a&gt; 下载&lt;/h2&gt;
+&lt;div class=&#34;note info&#34;&gt;
+&lt;p&gt;由于原生框架较难上手且作者摆烂已经很久没维护了，所以本文章采用基于原生框架开发的喵喵版本 yunzai&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;首先确保你的电脑下载了 nodejs，&lt;strong&gt;且 nodejs 版本大于 14&lt;/strong&gt;&lt;Badge type=&#34;warning&#34;&gt;warning&lt;/Badge&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9ub2RlanMub3JnL3poLWNuL2Rvd25sb2Fk&#34;&gt;https://nodejs.org/zh-cn/download&lt;/span&gt; 下载最新版 nodejs&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;同时确保你下载了 git，方便后续下载&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9naXQtc2NtLmNvbS9kb3dubG9hZA==&#34;&gt;https://git-scm.com/download&lt;/span&gt; 下载 git&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;之后前往&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9naXRlZS5jb20veW9pbWl5YS1rb2tvbWkvTWlhby1ZdW56YWk=&#34;&gt; https://gitee.com/yoimiya-kokomi/Miao-Yunzai&lt;/span&gt; 下载框架并安装&lt;/p&gt;
+&lt;p&gt;不想前往的可以直接用下面的代码 clone&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# 使用 Github 
+git clone --depth=1 https://github.com/yoimiya-kokomi/Miao-Yunzai.git
+cd Miao-Yunzai 
+git clone --depth=1 https://github.com/yoimiya-kokomi/miao-plugin.git ./plugins/miao-plugin/
+
+
+# 使用Gitee
+git clone --depth=1 https://gitee.com/yoimiya-kokomi/Miao-Yunzai.git
+cd Miao-Yunzai 
+git clone --depth=1 https://gitee.com/yoimiya-kokomi/miao-plugin.git ./plugins/miao-plugin/
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;note warning&#34;&gt;
+&lt;p&gt;务必要全部 clone 下来，比如 gitee 的那两行 clone 命令就要全部执行不然跑不了&lt;/p&gt;
+&lt;/div&gt;
+&lt;h2 id=&#34;安装&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#安装&#34;&gt;#&lt;/a&gt; 安装&lt;/h2&gt;
+&lt;p&gt;安装 pnpm, 安装过的可以直接跳过&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# 使用npmjs.org安装
+npm install pnpm -g
+
+# 指定国内源npmmirror.com安装
+npm --registry=https://registry.npmmirror.com install pnpm -g
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;安装依赖&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# 直接安装
+pnpm install -P
+
+# 如依赖安装缓慢或失败，可尝试更换国内npm源后再执行install命令
+pnpm config set registry https://registry.npmmirror.com
+pnpm install -P
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;安装redis&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#安装redis&#34;&gt;#&lt;/a&gt; 安装 redis&lt;/h2&gt;
+&lt;p&gt;yunzai 启动还需要 redis 数据库，因此我们现在去下载 redis&lt;/p&gt;
+&lt;div class=&#34;note info&#34;&gt;
+&lt;p&gt;由于原生 redis 不支持 windows 端，所以本文选择使用其他人构建的 windows 版本进行构建，如果你的系统是 linux 或者 macos 也或者说愿意折腾 WSL 的话可以自行尝试，本文不再赘述&lt;/p&gt;
+&lt;/div&gt;
+&lt;ol&gt;
+&lt;li&gt;前往&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9naXRodWIuY29tL3Rwb3JhZG93c2tpL3JlZGlzL3JlbGVhc2VzL3RhZy92NS4wLjE0LjE=&#34;&gt; https://github.com/tporadowski/redis/releases/tag/v5.0.14.1&lt;/span&gt; 下载安装镜像，进行安装&lt;/li&gt;
+&lt;li&gt;前往你的安装目录，打开&lt;strong&gt; redis-server.exe&lt;/strong&gt; 这个程序启动 redis&lt;/li&gt;
+&lt;li&gt;返回你的机器人目录，运行 “node app&amp;quot; 进行初步配置和启动&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;note info&#34;&gt;
+&lt;p&gt;如果双击之后闪退有两种原因&lt;br&gt;
+第一种是安装完成后 redis 会自行启动，所以实际上已经打开了，只需要把服务改成手动并重新启动即可&lt;sup class=&#34;footnote-ref&#34;&gt;&lt;a href=&#34;#fn1&#34; id=&#34;fnref1&#34;&gt;[1]&lt;/a&gt;&lt;/sup&gt;&lt;br&gt;
+如果不是上述情况解决方法看下面&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;请先打开文件扩展名！！！！！！！！！！！！！&lt;/p&gt;
+&lt;p&gt;然后在 Redis 目录下建一个名称是 start.txt 文本，在新建的 start.txt 文件中加入下面一句话&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;redis-server.exe redis.windows.conf
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;接着将文件名 start.txt 格式改成 start.bat 就行了&lt;/p&gt;
+&lt;p&gt;双击打开 start.bat 就可以了&lt;sup class=&#34;footnote-ref&#34;&gt;&lt;a href=&#34;#fn2&#34; id=&#34;fnref2&#34;&gt;[2]&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;hr class=&#34;footnotes-sep&#34;&gt;
+&lt;section class=&#34;footnotes&#34;&gt;
+&lt;ol class=&#34;footnotes-list&#34;&gt;
+&lt;li id=&#34;fn1&#34; class=&#34;footnote-item&#34;&gt;&lt;p&gt;详细解决方法见：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzU0NDMxMTY3L2FydGljbGUvZGV0YWlscy8xMTYzMjcxOTE=&#34;&gt;https://blog.csdn.net/qq_54431167/article/details/116327191&lt;/span&gt; &lt;a href=&#34;#fnref1&#34; class=&#34;footnote-backref&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn2&#34; class=&#34;footnote-item&#34;&gt;&lt;p&gt;原文地址：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9qaW5neWFuLmJhaWR1LmNvbS9hcnRpY2xlLzIyYTI5OWI1M2ZmM2I3ZGYxODM3NmExZi5odG1s&#34;&gt;https://jingyan.baidu.com/article/22a299b53ff3b7df18376a1f.html&lt;/span&gt; &lt;a href=&#34;#fnref2&#34; class=&#34;footnote-backref&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/section&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>
